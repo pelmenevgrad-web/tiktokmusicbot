@@ -4,8 +4,8 @@ import yt_dlp
 import os
 import time
 
-BOT_TOKEN = "8919020795:AAEXeMjI42CP6WAr8qf1WoMBbIN-LYIGrBI" 
-CHANNEL_ID = "-1004366234577" 
+BOT_TOKEN = os.environ.get("BOT_TOKEN") 
+CHANNEL_ID = os.environ.get("CHANNEL_ID")
 
 bot = telebot.TeleBot(BOT_TOKEN)
 
