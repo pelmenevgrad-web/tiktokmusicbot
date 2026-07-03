@@ -1,6 +1,7 @@
 name: TikTok Music Poster
 
 on:
+  workflow_dispatch:
   schedule:
     # Запускается каждый день в 15:00 по Лондону (18:00 по Киеву)
     - cron: '0 15 * * *'
