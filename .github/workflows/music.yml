@@ -1,0 +1,31 @@
+name: TikTok Music Poster
+
+on:
+  schedule:
+    # Запускается каждый день в 15:00 по Лондону (18:00 по Киеву)
+    - cron: '0 15 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Клонируем код
+      uses: actions/checkout@v3
+
+    - name: Устанавливаем Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Устанавливаем FFmpeg (чтобы качать полные треки)
+      run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+    - name: Устанавливаем библиотеки Python
+      run: pip install -r requirements.txt
+
+    - name: Запускаем бота
+      env:
+        BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+        CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
+      run: python bot.py 
